@@ -26,7 +26,7 @@ function ParticleText({
     // Generate particle positions from text rendered in a canvas
     useEffect(() => {
         // Load the Molle-Italic font using FontFace API
-        const font = new FontFace('Molle', 'url(../../assets/fonts/Molle-Italic.ttf)');
+        const font = new FontFace('Molle', 'url(../../../src/assets/fonts/molle-italic.ttf)');
         
         font.load().then((loadedFont) => {
             document.fonts.add(loadedFont);
