@@ -1,0 +1,14 @@
+@keyframes moveRight {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: 10em;
+    }
+}
+
+.lottieAnimation {
+    position: absolute;
+    animation: moveRight 3s infinite alternate; // 3초 동안 좌우 반복 애니메이션
+    top: 0;
+}

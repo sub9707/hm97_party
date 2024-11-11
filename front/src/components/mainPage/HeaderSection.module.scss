@@ -1,0 +1,48 @@
+.headerSectionContainer{
+    width: 100%;
+    height: 35rem;
+    position: relative;
+    overflow: hidden;
+    background: rgb(58,76,140);
+    background: linear-gradient(0deg, rgba(58,76,140,1) 0%, rgba(59,77,144,1) 18%, rgba(28,32,78,1) 100%);
+    
+    .treeline{
+        position: absolute;
+        width: 200rem;
+        height: auto;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        filter: drop-shadow(2px 0px 10px #00000067);
+    }
+
+    .topDeco{
+        position: absolute;
+        width: 40rem;
+        top: -19.5rem;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        filter: brightness(0.8);
+    }
+
+    .leftDeco{
+        position: absolute;
+        width: 30rem; 
+        top:-4rem;
+        left:-5rem;
+        transform: scaleX(-1);
+    }
+    .rightDeco{
+        position: absolute;
+        width: 30rem;
+        top:-4rem;
+        right:-4rem;
+    }
+
+    .lottieWrapper{
+        width: 100%;
+        position: absolute;
+        top : 0;
+    }
+}
