@@ -159,6 +159,8 @@ function ParticleText({
         particlesRef.current.geometry.attributes.position.needsUpdate = true;
     });
 
+    console.log('here')
+
     return (
         <points ref={particlesRef}>
             <bufferGeometry />
