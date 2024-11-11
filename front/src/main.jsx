@@ -4,6 +4,7 @@ import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import MainPage from './pages/main/page';
 import IntroPage from './pages/intro/page';
+import GalleryPage from './pages/gallery/page';
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
   {
     path:"/intro",
     element:<IntroPage />,
+  },
+  {
+    path:"/gallery",
+    element:<GalleryPage/>
   }
 ]);
 
