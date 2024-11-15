@@ -3,7 +3,6 @@ import React, {useEffect} from 'react'
 import styles from './MainMenuArea.module.scss';
 import MainMenu from '../common/Buttons/MainMenu';
 import testImg from '../../assets/images/test.jpg';
-import axiosInstance from '../../api/axios';
 
 function MainMenuArea() {
 

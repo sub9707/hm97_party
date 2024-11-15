@@ -1,37 +1,30 @@
 .background {
-    height: 100%;
+  height: 100%;
+  width: 100%;
+  background-image: url("/src/assets/images/backboard.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: hidden;
+  padding-inline: 10rem;
+  padding-block: 5rem;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  .gallery {
     width: 100%;
-    background-image: url("/src/assets/images/backboard.jpg");
-    background-size: cover; // Scales the image to cover the entire container
-    background-position: center; // Centers the image within the container
-    background-repeat: no-repeat; // Ensures the image does not repeat
-    background-attachment: fixed;
-    overflow: hidden;
-    .gallery {
-        width: 100%;
-        height: 100%;
-        margin: auto;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;
-        overflow-y: scroll; // Ensure scrolling is enabled
-        scrollbar-width: none; // Firefox: hides scrollbar
-        -ms-overflow-style: none; // IE and Edge: hides scrollbar
-        padding-inline: 10rem;
-      
-        &::-webkit-scrollbar { // Chrome, Safari, Opera: hides scrollbar
-          display: none;
-        }
-      }
-  
-    .image {
-      height: auto;
-      max-height: 20rem;
-      margin: 0;
-    }
+    max-height: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: start;
+    gap: 20px;
   
     figure {
+      max-width: 20rem;
       background-color: white;
       text-align: center;
       font-size: 15px;
@@ -40,25 +33,52 @@
       box-shadow: 1px 2px 3px black;
       transition: all 0.3s ease;
       transform-origin: center center;
+      pointer-events: all;
+      cursor: pointer;
+  
+      img {
+        width: 100%; /* Fit image to figure width */
+        height: auto; /* Maintain aspect ratio */
+        display: block; /* Ensure proper image flow */
+        margin: auto;
+      }
+  
+      figcaption {
+        max-width: 100%;
+        word-wrap: break-word;
+        margin-top: 0.6rem;
+        text-align: start;
+        padding-inline: 1rem;
+        font-size: 1.2rem;
+      }
+  
+      p {
+        font-size: 1rem;
+        margin-top: 1rem;
+        color: rgb(112, 112, 112);
+        text-align: end;
+        font-style: italic;
+        margin-bottom: 0; /* Prevent extra spacing at the bottom */
+      }
   
       &:hover {
-        box-shadow: 5px 10px 100px black;
-        transform: scale(1.1);
-        z-index: 20;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+          rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        transform: scale(1.5) !important;
+        z-index: 50 !important;
       }
     }
-  
-    // Specific rotations and z-indexes for each image class
-    .pic1 { transform: rotate(-10deg); z-index: 1; }
-    .pic2 { transform: rotate(15deg); z-index: 2; }
-    .pic3 { transform: rotate(-25deg); z-index: 1; }
-    .pic4 { transform: rotate(5deg); z-index: 1; }
-    .pic5 { transform: rotate(5deg); z-index: 1; }
-    .pic6 { transform: rotate(-8deg); z-index: 1; }
-    .pic7 { transform: rotate(2deg); z-index: 1; }
-    .pic8 { transform: rotate(-13deg); z-index: 1; }
-    .pic9 { transform: rotate(-7deg); z-index: 1; }
-    .pic10 { transform: rotate(2deg); z-index: 1; }
-    .pic11 { transform: rotate(-3deg); z-index: 1; }
   }
   
+
+  .vignette {
+    box-shadow: inset 30px 30px 200px rgba(0, 0, 0, 0.8);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 2000;
+    pointer-events: none;
+  }
+}

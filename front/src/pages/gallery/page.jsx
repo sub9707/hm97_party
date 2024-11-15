@@ -1,35 +1,59 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './page.module.scss';
+import axiosInstance from '../../api/axios';
+
+const fetchImages = async () => {
+  const response = await axiosInstance.get('/gallery/pictures');
+  return response.data;
+};
+
+const getRandomStyle = () => {
+  const rotations = [-25, -10, -8, -5, 0, 10, 15, 25];
+  const zIndexes = [1, 2, 3, 4, 5];
+
+  const rotation = rotations[Math.floor(Math.random() * rotations.length)];
+  const zIndex = zIndexes[Math.floor(Math.random() * zIndexes.length)];
+
+  return {
+    transform: `rotate(${rotation}deg)`,
+    zIndex: zIndex,
+  };
+};
 
 const GalleryPage = () => {
-  const images = [
-    { src: "https://31.media.tumblr.com/tumblr_mel7ujiRxo1qha057o1_1280.jpg", caption: "Summer 2014" },
-    { src: "http://favim.com/orig/201107/03/art-desert-lo-fi-nature-neil-krug-photography-Favim.com-92907.jpg", caption: "Death valley" },
-    { src: "https://33.media.tumblr.com/tumblr_lgidr1McXV1qdimp1o1_400.jpg", caption: "Early morning" },
-    { src: "https://m1.behance.net/rendition/modules/4344109/disp/674ec054303b2c2e7e39527e2f8dd01b.jpg", caption: "Lost." },
-    { src: "https://38.media.tumblr.com/tumblr_l8zzb3pezm1qdimp1o1_400.jpg", caption: "#Brooklyn" },
-    { src: "http://www.adventure-journal.com/wp-content/uploads/2009/11/jackbrull01_470.jpg", caption: "Why now?" },
-    { src: "http://www.webdesign.org/img_articles/22269/Sierra1.png", caption: "Verbier 10.08.2002" },
-    { src: "http://media-cache-ak0.pinimg.com/236x/55/82/2d/55822d7c9855f4751051328681cde4c0.jpg", caption: "My temporary home" },
-    { src: "https://33.media.tumblr.com/tumblr_lgidr1McXV1qdimp1o1_400.jpg", caption: "Love" },
-    { src: "https://33.media.tumblr.com/tumblr_lgidr1McXV1qdimp1o1_400.jpg", caption: "Torino 2013" },
-    { src: "https://m1.behance.net/rendition/modules/4344109/disp/674ec054303b2c2e7e39527e2f8dd01b.jpg", caption: "Miss you.." },
-    { src: "https://m1.behance.net/rendition/modules/4344109/disp/674ec054303b2c2e7e39527e2f8dd01b.jpg", caption: "Miss you.." },
-    { src: "https://m1.behance.net/rendition/modules/4344109/disp/674ec054303b2c2e7e39527e2f8dd01b.jpg", caption: "Miss you.." },
-    { src: "https://m1.behance.net/rendition/modules/4344109/disp/674ec054303b2c2e7e39527e2f8dd01b.jpg", caption: "Miss you.." },
-  ];
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    // Fetch the image data when the component mounts
+    const loadImages = async () => {
+      const data = await fetchImages();
+      setImages(data);
+    };
+
+    loadImages();
+  }, []);
 
   return (
     <div className={styles.background}>
       <div className={styles.gallery}>
         {images.map((image, index) => (
-          <figure key={index} className={styles[`pic${index + 1}`]}>
-            <img src={image.src} alt={image.caption} className={styles.image} />
-            <figcaption>{image.caption}</figcaption>
-          </figure>
+          <ImageCard key={index} image={image} />
         ))}
       </div>
+      <div className={styles.vignette} />
     </div>
+  );
+};
+
+const ImageCard = ({ image }) => {
+  const imageUrl = `https://drive.google.com/thumbnail?id=${image.id}&export=view`;
+
+  return (
+    <figure style={{ ...getRandomStyle() }}>
+      <img src={imageUrl} alt={image.name} className={styles.image} />
+      <figcaption>{image.name}</figcaption>
+      <p>{image.description}</p>
+    </figure>
   );
 };
 

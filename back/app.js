@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const dbRoutes = require('./router/DBRoutes');
 const authRoutes = require('./router/AuthRoute');
+const galleryRoutes = require('./router/GalleryRoute');
 
 app.use(express.json());
 app.use(cors());
@@ -13,6 +14,7 @@ app.use(bodyParser.json());
 
 app.use('/db', dbRoutes);
 app.use('/auth', authRoutes);
+app.use('/gallery', galleryRoutes)
 
 const port = process.env.PORT;
 const host = process.env.API_URL;
