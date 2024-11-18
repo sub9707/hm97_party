@@ -7,6 +7,7 @@ import './scrollWrapper.css';
 import PageModel from './PageModel';
 import UploadGallery from '../../components/common/Buttons/UploadGallery';
 import Uploading from '../../components/common/loading/Uploading';
+import ViewImage from './ViewImage';
 
 const fetchImages = async () => {
   const response = await axiosInstance.get('/gallery/pictures');
@@ -31,6 +32,7 @@ const GalleryPage = () => {
   const [isLoaded, setLoaded] = useState(false);
   const [isUploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState({ completed: 0, total: 0 });
+  const [selectedImage, setSelectedImage] = useState(null); // 선택된 이미지 데이터
 
   useEffect(() => {
     const loadImages = async () => {
@@ -45,6 +47,14 @@ const GalleryPage = () => {
 
     loadImages();
   }, []);
+
+  const handleImageClick = (image) => {
+    setSelectedImage(image); // 클릭한 이미지 데이터 설정
+  };
+
+  const closeViewImage = () => {
+    setSelectedImage(null); // 이미지 보기 닫기
+  };
 
   return (
     <>
@@ -61,7 +71,11 @@ const GalleryPage = () => {
         <div className="scrollWrapper">
           <div className="gallery">
             {images.map((image, index) => (
-              <ImageCard key={index} image={image} />
+              <ImageCard
+                key={index}
+                image={image}
+                onClick={() => handleImageClick(image)} // 전체 이미지 데이터 전달
+              />
             ))}
           </div>
         </div>
@@ -72,16 +86,24 @@ const GalleryPage = () => {
             total={uploadProgress.total}
           />
         )}
+        {selectedImage && (
+          <ViewImage
+            fileId={selectedImage.id} // 파일 ID 전달
+            title={selectedImage.name}
+            detail={selectedImage.description}
+            onClose={closeViewImage}
+          />
+        )}
       </div>
     </>
   );
 };
 
-const ImageCard = ({ image }) => {
+const ImageCard = ({ image, onClick }) => {
   const imageUrl = `https://drive.google.com/thumbnail?id=${image.id}&export=view`;
 
   return (
-    <figure style={getRandomStyle()}>
+    <figure style={getRandomStyle()} onClick={onClick} className={styles.clickable}>
       <img src={imageUrl} alt={image.name} className={styles.image} />
       <figcaption>{image.name}</figcaption>
       <p>{image.description}</p>
