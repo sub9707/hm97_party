@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './page.module.scss';
 import axiosInstance from '../../api/axios';
-import LoadPhoto from '../../components/common/loading/loadPhoto';
+import LoadPhoto from '../../components/common/loading/LoadPhoto';
 import Scroll from '../../components/common/Scrollbar/SmoothScrollbar';
 import './scrollWrapper.css';
 import PageModel from './PageModel';
