@@ -7,69 +7,9 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   overflow: hidden;
-  padding-inline: 10rem;
-  padding-block: 5rem;
-  overflow-y: scroll;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  display: flex;
+  justify-content: center;
 
-  .gallery {
-    width: 100%;
-    max-height: 100%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: start;
-    gap: 0.5rem;
-  
-    figure {
-      max-width: 20rem;
-      background-color: white;
-      text-align: center;
-      font-size: 15px;
-      padding: 10px;
-      margin: 10px;
-      box-shadow: 1px 2px 3px black;
-      transition: all 0.3s ease;
-      transform-origin: center center;
-      pointer-events: all;
-      cursor: pointer;
-  
-      img {
-        width: 100%; /* Fit image to figure width */
-        height: auto; /* Maintain aspect ratio */
-        display: block; /* Ensure proper image flow */
-        margin: auto;
-      }
-  
-      figcaption {
-        max-width: 100%;
-        word-wrap: break-word;
-        margin-top: 0.6rem;
-        text-align: start;
-        padding-inline: 1rem;
-        font-size: 1.2rem;
-      }
-  
-      p {
-        font-size: 1rem;
-        margin-top: 1rem;
-        color: rgb(112, 112, 112);
-        text-align: end;
-        font-style: italic;
-        margin-bottom: 0; /* Prevent extra spacing at the bottom */
-      }
-  
-      &:hover {
-        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-          rgba(0, 0, 0, 0.22) 0px 15px 12px;
-        transform: scale(1.3) !important;
-        z-index: 50 !important;
-      }
-    }
-  }
-  
 
   .vignette {
     box-shadow: inset 30px 30px 200px rgba(0, 0, 0, 0.8);
@@ -78,7 +18,8 @@
     left: 0;
     bottom: 0;
     right: 0;
-    z-index: 2000;
+    z-index: 997;
     pointer-events: none;
   }
 }
+

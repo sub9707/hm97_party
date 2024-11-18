@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import styles from './page.module.scss';
 import axiosInstance from '../../api/axios';
 import LoadPhoto from '../../components/common/loading/loadPhoto';
+import Scroll from '../../components/common/Scrollbar/SmoothScrollbar';
+import './scrollWrapper.css';
+import PageModel from './PageModel';
+import UploadGallery from '../../components/common/Buttons/UploadGallery';
+import Uploading from '../../components/common/loading/Uploading';
 
 const fetchImages = async () => {
   const response = await axiosInstance.get('/gallery/pictures');
@@ -24,17 +29,18 @@ const getRandomStyle = () => {
 const GalleryPage = () => {
   const [images, setImages] = useState([]);
   const [isLoaded, setLoaded] = useState(false);
+  const [isUploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState({ completed: 0, total: 0 });
 
   useEffect(() => {
-    // Fetch the image data when the component mounts
     const loadImages = async () => {
       setLoaded(false);
       const data = await fetchImages();
       setImages(data);
-      
-      setTimeout(()=>{
+
+      setTimeout(() => {
         setLoaded(true);
-      },1500)
+      }, 1500);
     };
 
     loadImages();
@@ -42,15 +48,31 @@ const GalleryPage = () => {
 
   return (
     <>
-    { isLoaded || <LoadPhoto/>}
-    <div className={styles.background}>
-      <div className={styles.gallery}>
-        {images.map((image, index) => (
-          <ImageCard key={index} image={image} />
-        ))}
+      <Scroll />
+      {isLoaded || <LoadPhoto />}
+      <div className={styles.background}>
+        <UploadGallery
+          setUploading={setUploading}
+          setUploadProgress={setUploadProgress}
+          refreshImages={fetchImages}
+          setImages={setImages}
+        />
+        <PageModel />
+        <div className="scrollWrapper">
+          <div className="gallery">
+            {images.map((image, index) => (
+              <ImageCard key={index} image={image} />
+            ))}
+          </div>
+        </div>
+        <div className={styles.vignette} />
+        {isUploading && (
+          <Uploading
+            completed={uploadProgress.completed}
+            total={uploadProgress.total}
+          />
+        )}
       </div>
-      <div className={styles.vignette} />
-    </div>
     </>
   );
 };
@@ -59,7 +81,7 @@ const ImageCard = ({ image }) => {
   const imageUrl = `https://drive.google.com/thumbnail?id=${image.id}&export=view`;
 
   return (
-    <figure style={{ ...getRandomStyle() }}>
+    <figure style={getRandomStyle()}>
       <img src={imageUrl} alt={image.name} className={styles.image} />
       <figcaption>{image.name}</figcaption>
       <p>{image.description}</p>
