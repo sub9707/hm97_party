@@ -1,6 +1,10 @@
 {
     "rewrites": [
         {
+            "source": "/gallery/pictures",
+            "destination": "http://192.168.219.103:3000/gallery/pictures"
+        },
+        {
             "source": "/(.*)",
             "destination": "/"
         }
