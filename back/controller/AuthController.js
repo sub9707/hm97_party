@@ -1,7 +1,6 @@
 const { google } = require('googleapis');
 const { JWT } = require('google-auth-library');
 const axios = require('axios');
-const creds = require("../credentials/applied-terrain-403516-0a3c705c33e1.json");
 
 const KAKAO_CLIENT_ID = process.env.KAKAO_CLIENT_ID;
 const KAKAO_REDIRECT_URI = `http://${process.env.API_URL}:${process.env.PORT}/auth/kakao/callback`;
@@ -9,8 +8,8 @@ const SPREADSHEET_ID = '1TJploids2HnfUCFPAMRHGIBwefzwZYCGix8xAwIvZJM';
 
 // Google Sheets authorization
 const authorizeGoogleSheet = new JWT({
-    email: creds.client_email,
-    key: creds.private_key,
+    email: process.env.client_email,
+    key: process.env.private_key,
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
 });
 

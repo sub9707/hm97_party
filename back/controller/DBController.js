@@ -1,11 +1,10 @@
 const { GoogleSpreadsheet } = require("google-spreadsheet");
-const creds = require("../credentials/applied-terrain-403516-0a3c705c33e1.json"); // 인증 정보 JSON 파일
 const {google} = require('googleapis');
 const {  JWT } = require('google-auth-library');
 
 const serviceAccountAuth = new JWT({
-    email: creds.client_email,
-    key: creds.private_key,
+    email: process.env.client_email,
+    key: process.env.private_key,
     scopes: [
         'https://www.googleapis.com/auth/spreadsheets',
     ],
@@ -17,9 +16,9 @@ const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHHET_ID, serviceAcco
 exports.getAllSheetData = async (req, res) => {
     try {
         const authorize = new google.auth.JWT(
-            creds.client_email,
+            process.env.client_email,
             null,
-            creds.private_key.replace(/\\n/g, '\n'),
+            process.env.private_key.replace(/\\n/g, '\n'),
             ['https://www.googleapis.com/auth/spreadsheets']
         );
 

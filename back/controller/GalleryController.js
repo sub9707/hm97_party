@@ -1,13 +1,12 @@
 const { google } = require('googleapis');
 const { JWT } = require('google-auth-library');
-const creds = require('../credentials/applied-terrain-403516-0a3c705c33e1.json'); // 인증 정보 JSON 파일
 const multer = require('multer');
 const { Readable } = require('stream');
 
 // Google 인증 객체 생성
 const serviceAccountAuth = new JWT({
-    email: creds.client_email,
-    key: creds.private_key.replace(/\\n/g, '\n'),
+    email: process.env.client_email,
+    key: process.env.private_key.replace(/\\n/g, '\n'),
     scopes: ['https://www.googleapis.com/auth/drive'],
 });
 
