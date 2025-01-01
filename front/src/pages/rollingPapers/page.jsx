@@ -16,9 +16,10 @@ import Jenga from '/src/components/three/models/Jenga';
 import Albums from '/src/components/three/models/Albums';
 import FishBuns from '/src/components/three/models/FishBuns';
 import RollingPaper from './RollingPaper';
+import Smoke from '../../components/three/models/Smoke';
 
 function Page() {
-    const { progress } = useProgress(); 
+    const { progress } = useProgress();
     const [loadingComplete, setLoadingComplete] = useState(false);
     const [fogActive, setFogActive] = useState(true);
     const [zoom, setZoom] = useState(false);
@@ -66,13 +67,18 @@ function Page() {
     return (
         <div className={styles.pageWrapper}>
             {/* 오버레이 텍스트 */}
-            {loadingComplete && fogActive && (
-                <div
-                    className={styles.overlayText}
-                    onClick={handleCanvasClick}
-                >
-                    화면을 클릭하세요
-                </div>
+            {loadingComplete && (
+                <>
+                    {fogActive &&
+                        <div
+                            className={styles.overlayText}
+                            onClick={handleCanvasClick}
+                        >
+                            화면을 클릭하세요
+                        </div>
+                    }
+                    <Smoke fadeOut={!fogActive} />
+                </>
             )}
 
             {/* 캔버스 */}
@@ -120,11 +126,10 @@ function Page() {
                         </mesh>
                     </animated.group>
                 </Suspense>
-
             </Canvas>
             {loadingComplete && !fogActive && <MouseControl onLeftClick={handleLeftClick} onRightClick={handleRightClick} selectedIndex={selectedIndex} onEnterClick={handleEnterClick} />}
 
-            <RollingPaper canvasOpen={canvasOpen} handleEnterClick={handleEnterClick} selectedIndex={selectedIndex}/>
+            <RollingPaper canvasOpen={canvasOpen} handleEnterClick={handleEnterClick} selectedIndex={selectedIndex} />
             {/* Loader */}
             {!loadingComplete && <Loader />}
         </div>
