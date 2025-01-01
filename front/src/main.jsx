@@ -7,6 +7,8 @@ import IntroPage from './pages/intro/page';
 import GalleryPage from './pages/gallery/page';
 import GamesPage from './pages/games/page';
 import RulletPage from './pages/games/rullet/page';
+import CommentsPage from './pages/comments/page';
+import RollingPaperPage from './pages/rollingPapers/page';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,10 @@ const router = createBrowserRouter([
     element: <GalleryPage />
   },
   {
+    path: "/rollingPapers",
+    element: <RollingPaperPage />
+  },
+  {
     path: "/games",
     element: <GamesPage />,
     children: [
@@ -30,6 +36,10 @@ const router = createBrowserRouter([
         element: <RulletPage />
       }
     ]
+  },
+  {
+    path:"/comments",
+    element:<CommentsPage/>
   }
 ]);
 

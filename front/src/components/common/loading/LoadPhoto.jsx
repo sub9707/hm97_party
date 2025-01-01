@@ -17,6 +17,7 @@ function LoadPhoto() {
     <div className={styles.loadPage}>
         <div className={styles.loadingContainer}>
         <Lottie
+        style={{position:'absolute', top:'10%'}}
             options={defaultOptions}
             height={300}
             width={700}

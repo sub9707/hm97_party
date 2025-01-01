@@ -23,7 +23,7 @@ function HeaderSection() {
                 <DecorationLottie />
                 <DecorationLottie invert />
             </div>
-            <img className={styles.topDeco} src={TopDeco} alt='top-decoration'/>
+            <img className={styles.topDeco} style={{'display':'none'}} src={TopDeco} alt='top-decoration'/>
             <img className={styles.leftDeco} src={CornerDeco} alt='corner-decoration'/>
             <img className={styles.rightDeco} src={CornerDeco} alt='corner-decoration'/>
             <img className={styles.treeline} src={treeline} alt='treeline' />

@@ -1,7 +1,14 @@
 import React from 'react'
 import styles from './MainMenu.module.scss';
+import { useNavigate } from 'react-router-dom';
 
-function MainMenu({ title, text, image, disabled=false }) {
+function MainMenu({ title, text, image, disabled=false, route='/' }) {
+    const navigate = useNavigate();
+    const handleRoute = () =>{
+        if (!disabled) {
+            navigate(route);
+        }
+    }
     return (
         <div className={`${styles.ButtonBox} ${disabled ? styles.disabled : ''}`}>
             <div className={styles.imageWrapper}>
@@ -13,7 +20,7 @@ function MainMenu({ title, text, image, disabled=false }) {
                     <p className={styles.infoDetail}>{text}</p>
                 </div>
                 <div className={styles.cardFooter}>
-                    <button className={styles.confirmBtn}>
+                    <button className={styles.confirmBtn} onClick={handleRoute}>
                         바로가기
                     </button>
                 </div>

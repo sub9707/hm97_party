@@ -1,0 +1,77 @@
+.modalfullpage {
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4.5px);
+    -webkit-backdrop-filter: blur(4.5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: all;
+  }
+  
+  .modalContainer {
+    position: relative;
+    width: 60vw;
+    height: 90vh;
+    background-color: #ffffff;
+    border-radius: 8px;
+    pointer-events: all; 
+    padding: 0rem 3rem;
+    padding-top: 2rem;
+
+    .modalContent{
+      width: 100%;
+      height: 100%;
+      overflow-y: scroll;
+      font-family: 'GmarketSansMedium';
+      padding-block: 1rem 4rem;
+      -ms-overflow-style: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      h1{
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+      }
+      h2{
+        font-size: 1.7rem;
+        margin-bottom: 1rem;
+      }
+      .calenderBox{
+        width: 100%;
+        height: 30rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1rem;
+      }
+      .imageCarouselBox{
+        width: 100%;
+        height: 20rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .dotLine{
+        width: 100%;
+        border: dotted rgb(187, 187, 187) 1px;
+        margin-block: 2rem
+      }
+    }
+  }
+  
+  .closeBtn {
+    pointer-events: all;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    position: absolute;
+    right: .5rem;
+    top:.5rem;
+  }
+  

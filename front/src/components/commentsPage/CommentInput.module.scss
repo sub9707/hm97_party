@@ -1,0 +1,60 @@
+.inputBox{
+    width: 50rem;
+    height: 8rem;
+    display:flex;
+    padding-block: 1rem;
+    margin-bottom: 1rem;
+    font-family: 'Typo_CrayonL';
+    .profileWrapper{
+        width: 10rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .profilePic{
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+        }
+    }
+    .inputArea{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap:0.5rem;
+        .username{
+            color: white;
+        }
+        .inputContainer{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            .textInput{
+                width: 30rem;
+                height: 4rem;
+                background: transparent;
+                border: 1px rgba(255, 255, 255, 0.493) solid;
+                padding: 0.5rem;
+                color:white;
+                &::placeholder{
+                    color: white;
+                    font-family: 'Typo_CrayonM';
+                }
+            }
+            button{
+                width: 4rem;
+                height: 100%;
+                border-radius: 4px;
+                background:transparent;
+                border: 2px rgba(255, 255, 255, 0.493) solid;
+                color: white;
+                font-family: 'Typo_CrayonM';
+                cursor: pointer;
+                font-weight: 700;
+                &:hover{
+                    background-color: rgba(255, 255, 255, 0.267);
+                }
+            }
+        }
+    }
+
+}

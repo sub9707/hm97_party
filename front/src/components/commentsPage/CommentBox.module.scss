@@ -1,0 +1,50 @@
+.boxWrapper {
+    width: 50rem;
+    height: auto;
+    display: flex;
+
+    .profileWrapper {
+        width: 7rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .profilePic {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            background-color: bisque;
+        }
+    }
+
+    .commentWrapper {
+        width: 40rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: white;
+        font-family: 'Typo_CrayonM';
+
+        .username {
+            font-style: italic;
+            color:rgb(248, 248, 135);
+            font-size: 1.5rem;
+        }
+
+        .content {
+            margin-top: 0.5rem;
+            font-size: 1.8rem;
+            line-height: 1.5;
+        }
+        .detailBox{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
+            .delete{
+                cursor: pointer;
+            }
+        }
+
+    }
+}

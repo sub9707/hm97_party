@@ -3,6 +3,7 @@ import styles from './BodySection.module.scss';
 import ProfileArea from './ProfileArea';
 import MainMenuArea from './MainMenuArea';
 import { useLocation } from 'react-router-dom';
+import PartyInfo from '../common/Buttons/PartyInfo';
 
 function BodySection() {
   const location = useLocation();
@@ -20,12 +21,15 @@ function BodySection() {
       window.history.replaceState({}, '', `${location.pathname}?${params.toString()}`);
     }
   }, [location]);
-  
+
   return (
     <div className={styles.bodyContainer}>
       <div className={styles.bodyWrapper}>
-        <ProfileArea/>
-        <MainMenuArea/>
+        <div className={styles.bodyHeaderArea}>
+          <PartyInfo/>
+          <ProfileArea />
+        </div>
+        <MainMenuArea />
       </div>
     </div>
   )

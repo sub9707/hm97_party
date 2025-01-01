@@ -1,0 +1,104 @@
+.canvasPage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  user-select: none;
+  pointer-events: none;
+  display: none; // 기본적으로 숨김
+  align-items: center;
+  justify-content: center;
+
+  .canvasWrapper {
+    width: 90%;
+    height: 90%;
+    position: relative;
+    h1 {
+      font-family: 'EF_jejudoldam';
+      font-size: 3rem;
+      position: absolute;
+      margin: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      user-select: none;
+      z-index: 9999;
+    }
+    .closeBtn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 2.5rem;
+      cursor: pointer;
+      z-index: 99999;
+    }
+    .canvasControls {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+
+      button.controlButton {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        cursor: pointer;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 0.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          width: 1.5rem;
+        }
+        &:hover {
+          background-color: #f0f0f0;
+        }
+      }
+
+      button.selected {
+        border: 2px solid rgb(180, 180, 255);
+        background-color: #ccc;
+      }
+
+      .rangeControl {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        label {
+          margin-bottom: 0.5rem;
+        }
+        input[type="range"] {
+          width: 150px;
+        }
+      }
+
+      .colorPicker {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        label {
+          margin-bottom: 0.5rem;
+        }
+        input[type="color"] {
+          width: 40px;
+          height: 40px;
+          border: none;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.canvasPage.active {
+  display: flex; // canvasOpen이 true일 때 flex로 보이도록 설정
+  pointer-events: auto; // 클릭 가능하게 설정
+}

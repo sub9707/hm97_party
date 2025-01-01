@@ -10,7 +10,7 @@ const serviceAccountAuth = new JWT({
     ],
 });
 
-const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHHET_ID, serviceAccountAuth);
+const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHEET_ID, serviceAccountAuth);
 
 
 exports.getAllSheetData = async (req, res) => {
@@ -27,8 +27,8 @@ exports.getAllSheetData = async (req, res) => {
 
         // 스프레드시트의 데이터 가져오기
         const response = await googleSheet.spreadsheets.values.get({
-            spreadsheetId: process.env.GOOGLE_SPREADSHHET_ID,
-            range: 'A2:C', // 데이터 시작 범위 (A열:번호, B열:이름, C열:상세 정보)
+            spreadsheetId: process.env.GOOGLE_SPREADSHEET_ID,
+            range: 'users!A2:C', // 데이터 시작 범위 (A열:번호, B열:이름, C열:상세 정보)
         });
 
         // 스프레드시트 데이터를 가져온 후 가공
