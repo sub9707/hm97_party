@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const app = express();
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
@@ -10,15 +9,22 @@ const galleryRoutes = require('./router/GalleryRoute');
 const commentRoutes = require('./router/CommentsRoute');
 const rollingPaperRoutes = require('./router/rollingPaperRoute');
 
-app.use(express.json({
-    limit : "50mb"
-}));
-app.use(express.urlencoded({
-    limit:"50mb",
-    extended: false
-}));
+const app = express();
 
-app.use(cors());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: false }));
+
+// CORS 설정
+const corsOptions = {
+    origin: process.env.ENVIRONMENT === 'DEVELOPMENT' 
+        ? process.env.FRONTEND_URL_DEV 
+        : process.env.FRONTEND_URL_PRODUCTION,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+};
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Preflight Request 처리
+
 app.use(bodyParser.json());
 
 app.use('/db', dbRoutes);
@@ -27,9 +33,8 @@ app.use('/gallery', galleryRoutes);
 app.use('/comment', commentRoutes);
 app.use('/rolling', rollingPaperRoutes);
 
-const port = process.env.PORT;
-const host = process.env.ENVIRONMENT == 'DEVELOPMENT' ? process.env.API_URL_DEV : process.env.API_URL_PRODUCTION;
+const port = process.env.PORT || 5000;
 
-app.listen(port, host, () => {
-    console.log(`Server started on http://${host}:${port}`);
+app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
 });
