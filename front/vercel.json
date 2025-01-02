@@ -18,5 +18,19 @@
             "Access-Control-Allow-Origin": "*"
           }
         }
-      ]
+      ],
+      "headers": [
+        {
+          "source": "/(.*)",
+          "headers": [
+            { "key": "Access-Control-Allow-Origin", "value": "*" }
+          ]
+        },
+        {
+          "source": "/hm97-party.vercel.app/(.*)",
+          "headers": [
+            { "key": "Access-Control-Allow-Origin", "value": "*" }
+          ]
+        }  
+    ]
 }
