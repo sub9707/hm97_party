@@ -14,16 +14,25 @@ const app = express();
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: false }));
 
-// CORS 설정
 const corsOptions = {
-    origin: process.env.ENVIRONMENT === 'DEVELOPMENT' 
-        ? process.env.FRONTEND_URL_DEV 
-        : process.env.FRONTEND_URL_PRODUCTION,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true,
+    origin: (origin, callback) => {
+        const allowedOrigins = [
+            process.env.FRONTEND_URL_DEV,
+            process.env.FRONTEND_URL_PRODUCTION,
+        ];
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true, // 쿠키 포함 요청 허용
 };
+
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // Preflight Request 처리
+app.options('*', cors(corsOptions)); // Preflight 요청 처리
 
 app.use(bodyParser.json());
 
