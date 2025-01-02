@@ -89,6 +89,9 @@ function Page() {
                 onCreated={({ gl }) => {
                     gl.setClearColor('#ffd9c0'); // 캔버스 배경색 설정
                 }}
+                onUnmount={({ gl }) => {
+                    gl.dispose(); // WebGL 리소스 정리
+                  }}
             >
                 {/* 안개 */}
                 <animated.fog

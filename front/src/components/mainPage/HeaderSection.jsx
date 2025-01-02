@@ -13,7 +13,9 @@ import CornerDeco from '../../assets/images/corner-deco.png';
 function HeaderSection() {
     return (
         <div className={styles.headerSectionContainer}>
-            <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
+            <Canvas camera={{ position: [0, 0, 10], fov: 75 }} onUnmount={({ gl }) => {
+                gl.dispose(); // WebGL 리소스 정리
+            }}>
                 <ambientLight intensity={0.5} />
                 <Snowflakes speed={0.02} sway={0.05} swayFrequency={1} />
                 <ParticleText text="HM97" fontSize={100} convergenceSpeed={0.03} dispersionSpeed={0.005} cycleDelay={1} holdTextDuration={2} archIntensity={1} particleDensity={2} />
@@ -23,9 +25,9 @@ function HeaderSection() {
                 <DecorationLottie />
                 <DecorationLottie invert />
             </div>
-            <img className={styles.topDeco} style={{'display':'none'}} src={TopDeco} alt='top-decoration'/>
-            <img className={styles.leftDeco} src={CornerDeco} alt='corner-decoration'/>
-            <img className={styles.rightDeco} src={CornerDeco} alt='corner-decoration'/>
+            <img className={styles.topDeco} style={{ 'display': 'none' }} src={TopDeco} alt='top-decoration' />
+            <img className={styles.leftDeco} src={CornerDeco} alt='corner-decoration' />
+            <img className={styles.rightDeco} src={CornerDeco} alt='corner-decoration' />
             <img className={styles.treeline} src={treeline} alt='treeline' />
         </div>
     )
