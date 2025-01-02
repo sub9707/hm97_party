@@ -6,14 +6,31 @@ import * as THREE from 'three';
 import styles from './model.module.scss';
 
 function PageModel() {
+    useEffect(() => {
+        return () => {
+            const canvas = document.querySelector('canvas');
+            if (canvas) {
+                const gl = canvas.getContext('webgl');
+                if (gl) {
+                    gl.getExtension('WEBGL_lose_context')?.loseContext(); // WebGL 컨텍스트 해제
+                }
+                canvas.parentNode?.removeChild(canvas); // Canvas 제거
+            }
+        };
+    }, []);
     return (
         <div className={styles.modelWrapper}>
-            <Canvas className={styles.canvasEl}>
+            <Canvas className={styles.canvasEl} onCreated={({ gl }) => {
+                gl.setClearColor('#ffd9c0'); // 캔버스 배경색 설정
+            }}
+                onUnmount={({ gl }) => {
+                    gl.dispose(); // WebGL 리소스 정리
+                }}>
                 <ambientLight intensity={0.5} />
                 <directionalLight position={[0, 0, 10]} intensity={4} />
                 {/* <hemisphereLight intensity={0.5} /> */}
                 <Camera scale={1} rotation={[0, 0, Math.PI / 5]} position={[-5.2, 1.8, 1]} />
-                <Pen scale={18} rotation={[Math.PI/2, 0, 0]} position={[6.3, -2.5, 0]} />
+                <Pen scale={18} rotation={[Math.PI / 2, 0, 0]} position={[6.3, -2.5, 0]} />
             </Canvas>
         </div>
     );

@@ -55,6 +55,7 @@ const GalleryPage = () => {
   const closeViewImage = () => {
     setSelectedImage(null); // 이미지 보기 닫기
   };
+  
 
   return (
     <>

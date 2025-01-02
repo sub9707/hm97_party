@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './HeaderSection.module.scss';
 import { Canvas } from '@react-three/fiber';
 import Snowflakes from './Snowflakes';
@@ -11,6 +11,18 @@ import TopDeco from '../../assets/images/deco1.png';
 import CornerDeco from '../../assets/images/corner-deco.png';
 
 function HeaderSection() {
+    useEffect(() => {
+        return () => {
+          const canvas = document.querySelector('canvas');
+          if (canvas) {
+            const gl = canvas.getContext('webgl');
+            if (gl) {
+              gl.getExtension('WEBGL_lose_context')?.loseContext(); // WebGL 컨텍스트 해제
+            }
+            canvas.parentNode?.removeChild(canvas); // Canvas 제거
+          }
+        };
+      }, []);
     return (
         <div className={styles.headerSectionContainer}>
             <Canvas camera={{ position: [0, 0, 10], fov: 75 }} onUnmount={({ gl }) => {

@@ -49,6 +49,19 @@ function RollingPaper({ canvasOpen, handleEnterClick, selectedIndex }) {
   }, [canvasOpen]);
 
   useEffect(() => {
+    return () => {
+      const canvas = document.querySelector('canvas');
+      if (canvas) {
+        const gl = canvas.getContext('webgl');
+        if (gl) {
+          gl.getExtension('WEBGL_lose_context')?.loseContext(); // WebGL 컨텍스트 해제
+        }
+        canvas.parentNode?.removeChild(canvas); // Canvas 제거
+      }
+    };
+  }, []);
+
+  useEffect(() => {
     const loadCanvasData = async () => {
       setLoading(true);
       setImageLoaded(false);

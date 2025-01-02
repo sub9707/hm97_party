@@ -1,46 +1,47 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './font.css'
-import './index.css'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import MainPage from './pages/main/page';
-import IntroPage from './pages/intro/page';
-import GalleryPage from './pages/gallery/page';
-import GamesPage from './pages/games/page';
-import RulletPage from './pages/games/rullet/page';
-import CommentsPage from './pages/comments/page';
-import RollingPaperPage from './pages/rollingPapers/page';
+import React, { Suspense, lazy } from 'react';
+import ReactDOM from 'react-dom/client';
+import './font.css';
+import './index.css';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+
+const MainPage = lazy(() => import('./pages/main/page'));
+const IntroPage = lazy(() => import('./pages/intro/page'));
+const GalleryPage = lazy(() => import('./pages/gallery/page'));
+const GamesPage = lazy(() => import('./pages/games/page'));
+const RulletPage = lazy(() => import('./pages/games/rullet/page'));
+const CommentsPage = lazy(() => import('./pages/comments/page'));
+const RollingPaperPage = lazy(() => import('./pages/rollingPapers/page'));
 
 const router = createBrowserRouter([
   {
     path: "",
-    element: <MainPage />,
+    element: <Suspense fallback={<div>Loading...</div>}><MainPage /></Suspense>,
   },
   {
     path: "/intro",
-    element: <IntroPage />,
+    element: <Suspense fallback={<div>Loading...</div>}><IntroPage /></Suspense>,
   },
   {
     path: "/gallery",
-    element: <GalleryPage />
+    element: <Suspense fallback={<div>Loading...</div>}><GalleryPage /></Suspense>,
   },
   {
     path: "/rollingPapers",
-    element: <RollingPaperPage />
+    element: <Suspense fallback={<div>Loading...</div>}><RollingPaperPage /></Suspense>,
   },
   {
     path: "/games",
-    element: <GamesPage />,
+    element: <Suspense fallback={<div>Loading...</div>}><GamesPage /></Suspense>,
     children: [
       {
         path: "rullet",
-        element: <RulletPage />
+        element: <Suspense fallback={<div>Loading...</div>}><RulletPage /></Suspense>,
       }
     ]
   },
   {
     path:"/comments",
-    element:<CommentsPage/>
+    element:<Suspense fallback={<div>Loading...</div>}><CommentsPage /></Suspense>,
   }
 ]);
 
