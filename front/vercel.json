@@ -1,36 +1,24 @@
 {
     "rewrites": [
-        {
-            "source": "/gallery/pictures",
-            "destination": "http://192.168.219.103:3000/gallery/pictures"
-        },
-        {
-            "source": "/(.*)",
-            "destination": "/"
-        }
+      {
+        "source": "/gallery/pictures",
+        "destination": "http://192.168.219.103:3000/gallery/pictures"
+      },
+      {
+        "source": "/(.*)",
+        "destination": "/"
+      }
     ],
-      "routes": [
-        {
-          "src": "/(.*)",
-          "dest": "./index.js",
-          "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-          "headers": {
-            "Access-Control-Allow-Origin": "*"
-          }
-        }
-      ],
-      "headers": [
-        {
-          "source": "/(.*)",
-          "headers": [
-            { "key": "Access-Control-Allow-Origin", "value": "*" }
-          ]
-        },
-        {
-          "source": "/hm97-party.vercel.app/(.*)",
-          "headers": [
-            { "key": "Access-Control-Allow-Origin", "value": "*" }
-          ]
-        }  
+    "headers": [
+      {
+        "source": "/(.*)",
+        "headers": [
+          { "key": "Access-Control-Allow-Origin", "value": "https://hm97-party.vercel.app" },
+          { "key": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, DELETE, OPTIONS" },
+          { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization" },
+          { "key": "Access-Control-Allow-Credentials", "value": "true" }
+        ]
+      }
     ]
-}
+  }
+  
